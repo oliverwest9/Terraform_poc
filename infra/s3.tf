@@ -30,11 +30,11 @@ resource "aws_s3_bucket_policy" "static_website_policy" {
 resource "aws_s3_bucket_object" "index" {
   bucket = aws_s3_bucket.front_end_bucket.bucket
   key    = "index.html"
-  source = "${path.root}/front_end/index.html"
+  source = "${path.root}/index.html"
 }
 
 resource "aws_s3_bucket_object" "error" {
   bucket = aws_s3_bucket.front_end_bucket.bucket
   key    = "error.html"
-  source = "${path.root}/front_end/error.html"
+  source = "${path.root}/error.html"
 }

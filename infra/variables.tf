@@ -1,6 +1,6 @@
 variable "region" {
   description = "The AWS region to deploy resources in."
-  default     = "us-west-1"
+  default     = "eu-west-1"
 }
 
 variable "bucket_name" {
