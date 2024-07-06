@@ -5,10 +5,12 @@ variable "region" {
 
 variable "bucket_name" {
   description = "The name of the S3 bucket to create."
+  default = "internal-gpt-front-end"
 }
 
 variable "domain_name" {
   description = "The domain name for the Route 53 hosted zone."
+  default = "internal-gpt.life"
 }
 
 variable "index_document" {
