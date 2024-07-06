@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "static_website" {
-  bucket = "your-unique-bucket-name"
+resource "aws_s3_bucket" "front_end_bucket" {
+  bucket = var.bucket_name
 
   website {
     index_document = "index.html"
