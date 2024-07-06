@@ -23,8 +23,8 @@ jobs:
 
       - name: Prepare additional files
         run: |
-          cp front_end\index.html ${{ env.CONFIG_DIRECTORY }}/
-          cp front_end\error.html ${{ env.CONFIG_DIRECTORY }}/
+          cp front_end/index.html ${{ env.CONFIG_DIRECTORY }}/
+          cp front_end/error.html ${{ env.CONFIG_DIRECTORY }}/
 
       - name: Upload Configuration
         uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
