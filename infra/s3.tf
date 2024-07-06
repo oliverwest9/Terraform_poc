@@ -6,8 +6,6 @@ resource "aws_s3_bucket" "static_website" {
     error_document = "error.html"
   }
 
-  object_ownership = "BucketOwnerEnforced"
-
   tags = {
     Name = "StaticWebsite"
   }
