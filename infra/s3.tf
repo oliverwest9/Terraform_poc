@@ -20,7 +20,9 @@ resource "aws_s3_bucket_policy" "static_website_policy" {
     Statement = [
       {
         Effect    = "Allow",
-        Principal = "*",
+        Principal = {
+          AWS = "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}"
+        },
         Action    = "s3:GetObject",
         Resource  = "${aws_s3_bucket.front_end_bucket.arn}/*"
       }
