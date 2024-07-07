@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "front_end_bucket" {
   bucket = var.bucket_name
+  
 
   website {
     index_document = "index.html"
@@ -31,10 +32,12 @@ resource "aws_s3_bucket_object" "index" {
   bucket = aws_s3_bucket.front_end_bucket.bucket
   key    = "index.html"
   source = "${path.root}/index.html"
+  content_type = "text/html"
 }
 
 resource "aws_s3_bucket_object" "error" {
   bucket = aws_s3_bucket.front_end_bucket.bucket
   key    = "error.html"
   source = "${path.root}/error.html"
+  content_type = "text/html"
 }
