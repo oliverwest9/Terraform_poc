@@ -17,7 +17,7 @@ resource "aws_lambda_function" "ConnectHandler" {
   # Inline code is specified directly in the `filename` argument using the `data` and `archive_file` resources.
   # This approach packages the inline code into a ZIP file that Lambda requires.
   depends_on = [
-    aws_iam_role_policy.ConnectHandlerServiceRoleDefaultPolicy7DE94863,
+    aws_iam_policy.ConnectHandlerServiceRoleDefaultPolicy7DE94863,
     aws_iam_role.ConnectHandlerServiceRole7E4A9B1F
   ]
 
