@@ -1,4 +1,4 @@
-resource "aws_dynamodb_table" "connections_table" {
+resource "aws_dynamodb_table" "ConnectionsTable8000B8A1" {
   name           = "ConnectionsTable"
   billing_mode   = "PROVISIONED"
   read_capacity  = 5
