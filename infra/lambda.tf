@@ -3,7 +3,7 @@ resource "aws_lambda_function" "ConnectHandler" {
 
   # Assuming the IAM role and DynamoDB table are defined elsewhere in your Terraform configuration
   # and their identifiers are ConnectHandlerServiceRole and ConnectionsTable8000B8A1 respectively.
-  role = aws_iam_role.ConnectHandlerServiceRole.arn
+  role = aws_iam_role.ConnectHandlerServiceRole7E4A9B1F.arn
 
   handler = "index.handler"
   runtime = "nodejs20.x"
@@ -18,7 +18,7 @@ resource "aws_lambda_function" "ConnectHandler" {
   # This approach packages the inline code into a ZIP file that Lambda requires.
   depends_on = [
     aws_iam_role_policy.ConnectHandlerServiceRoleDefaultPolicy,
-    aws_iam_role.ConnectHandlerServiceRole
+    aws_iam_role.ConnectHandlerServiceRole7E4A9B1F
   ]
 
   filename         = data.archive_file.ConnectHandler_zip.output_path
