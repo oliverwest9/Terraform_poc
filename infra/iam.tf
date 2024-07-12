@@ -83,6 +83,43 @@
     policy_arn = aws_iam_policy.DisconnectHandlerServiceRoleDefaultPolicy1800B9E5.arn
   }
 
+  resource "aws_iam_policy" "default_handler_service_role_default_policy" {
+    name        = "DefaultHandlerServiceRoleDefaultPolicy2F57C32F"
+    policy      = jsonencode({
+        "Version": "2012-10-17",
+        "Statement": [
+        {
+            "Action": "execute-api:ManageConnections",
+            "Effect": "Allow",
+            "Resource": "arn:aws:execute-api:${var.region}:${aws_account_id}/*/POST/@connections/*"
+        },
+        {
+            "Action": "execute-api:ManageConnections",
+            "Effect": "Allow",
+            "Resource": "arn:aws:execute-api:${var.region}:${aws_account_id}/*/GET/@connections/*"
+      }
+    ]
+  })
+  }
+
+  resource "aws_iam_role_policy_attachment" "default_handler_service_role_attachment" {
+    role       = aws_iam_role.default_handler_service_role.name
+    policy_arn = aws_iam_policy.default_handler_service_role_default_policy.arn
+  }
+
+  resource "aws_iam_policy" "manage_connections" {
+    name        = "manageConnections7F91357B"
+    policy      = jsonencode({
+        "Version": "2012-10-17",
+        "Statement": [
+        {
+            "Action": "execute-api:ManageConnections",
+            "Effect": "Allow",
+            "Resource": "arn:aws:execute-api:${var.region}:${var.account_id}:*/*/POST/@connections/*"
+        }
+    ]
+  })
+  }
 
 #     resource "aws_iam_role" "send_message_handler_service_role" {
 #     name               = "SendMessageHandlerServiceRole5F523417"
@@ -96,49 +133,6 @@
 #         "Principal": {
 #           "Service": "lambda.amazonaws.com"
 #         }
-#       }
-#     ]
-#   }
-#   EOF
-#   }
-
-
-#   resource "aws_iam_policy" "default_handler_service_role_default_policy" {
-#     name        = "DefaultHandlerServiceRoleDefaultPolicy2F57C32F"
-#     policy      = <<EOF
-#   {
-#     "Version": "2012-10-17",
-#     "Statement": [
-#       {
-#         "Action": "execute-api:ManageConnections",
-#         "Effect": "Allow",
-#         "Resource": "arn:aws:execute-api:${aws_region}:${aws_account_id}/*/POST/@connections/*"
-#       },
-#       {
-#         "Action": "execute-api:ManageConnections",
-#         "Effect": "Allow",
-#         "Resource": "arn:aws:execute-api:${aws_region}:${aws_account_id}/*/GET/@connections/*"
-#       }
-#     ]
-#   }
-#   EOF
-#   }
-
-#   resource "aws_iam_role_policy_attachment" "default_handler_service_role_attachment" {
-#     role       = aws_iam_role.default_handler_service_role.name
-#     policy_arn = aws_iam_policy.default_handler_service_role_default_policy.arn
-#   }
-
-#   resource "aws_iam_policy" "manage_connections" {
-#     name        = "manageConnections7F91357B"
-#     policy      = <<EOF
-#   {
-#     "Version": "2012-10-17",
-#     "Statement": [
-#       {
-#         "Action": "execute-api:ManageConnections",
-#         "Effect": "Allow",
-#         "Resource": "arn:aws:execute-api:${var.region}:${var.account_id}:*/*/POST/@connections/*"
 #       }
 #     ]
 #   }

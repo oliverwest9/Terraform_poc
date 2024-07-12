@@ -22,3 +22,8 @@ variable "error_document" {
   description = "The S3 bucket error document."
   default     = "error.html"
 }
+
+variable "account_id" {
+  description = "The AWS account ID."
+  default     = "610214958769"
+}
