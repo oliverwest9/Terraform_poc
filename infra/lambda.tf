@@ -78,7 +78,7 @@ resource "aws_lambda_function" "DisconnectHandler" {
   }
 
   depends_on = [
-    aws_iam_role_policy.DisconnectHandlerServiceRoleDefaultPolicy1800B9E5,
+    aws_iam_policy.DisconnectHandlerServiceRoleDefaultPolicy1800B9E5,
     aws_iam_role.DisconnectHandlerServiceRoleE54F14F9
   ]
 }
