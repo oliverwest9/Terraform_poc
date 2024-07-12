@@ -119,9 +119,9 @@ resource "aws_iam_role" "DefaultHandlerServiceRoleDF00569C" {
             "Action": "execute-api:ManageConnections",
             "Effect": "Allow",
             "Resource": "arn:aws:execute-api:${var.region}:${var.account_id}/*/GET/@connections/*"
-      }
-    ]
-  })
+        }
+        ]
+    })
   }
 
   resource "aws_iam_policy" "manage_connections" {
