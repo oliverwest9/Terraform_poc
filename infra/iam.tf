@@ -102,11 +102,6 @@
   })
   }
 
-  resource "aws_iam_role_policy_attachment" "default_handler_service_role_attachment" {
-    role       = aws_iam_role.default_handler_service_role.name
-    policy_arn = aws_iam_policy.default_handler_service_role_default_policy.arn
-  }
-
   resource "aws_iam_policy" "manage_connections" {
     name        = "manageConnections7F91357B"
     policy      = jsonencode({
