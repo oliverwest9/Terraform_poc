@@ -66,7 +66,7 @@ resource "aws_lambda_function" "DisconnectHandler" {
   function_name = "DisconnectHandlerCB7ED6F7"
   role          = aws_iam_role.DisconnectHandlerServiceRoleE54F14F9.arn
   handler       = "index.handler"
-  runtime       = "nodejs20.x"
+  runtime       = "nodejs16.x"
 
   filename         = data.archive_file.DisconnectHandler_zip.output_path
   source_code_hash = data.archive_file.DisconnectHandler_zip.output_base64sha256
