@@ -119,3 +119,60 @@ data "archive_file" "DisconnectHandler_zip" {
     filename = "index.js"
   }
 }
+
+resource "aws_lambda_function" "DefaultHandler" {
+  function_name = "DefaultHandler604DF7AC"
+  role          = aws_iam_role.DefaultHandlerServiceRoleDF00569C.arn
+  handler       = "index.handler"
+  runtime       = "nodejs16.x"
+
+  filename         = data.archive_file.DefaultHandler_zip.output_path
+  source_code_hash = data.archive_file.DefaultHandler_zip.output_base64sha256
+
+  depends_on = [
+    aws_iam_policy.DefaultHandlerServiceRoleDefaultPolicy2F57C32F,
+    aws_iam_role.DefaultHandlerServiceRoleDF00569C
+  ]
+}
+
+data "archive_file" "DefaultHandler_zip" {
+  type        = "zip"
+  output_path = "${path.module}/DefaultHandler604DF7AC.zip"
+
+  source {
+    content  = <<-EOT
+      const {ApiGatewayManagementApiClient, PostToConnectionCommand, GetConnectionCommand} = require("@aws-sdk/client-apigatewaymanagementapi")
+      exports.handler = async function(event) {
+        let connectionInfo;
+        let connectionId = event.requestContext.connectionId;
+      
+        const callbackAPI = new ApiGatewayManagementApiClient({
+          apiVersion: '2018-11-29',
+          endpoint: 'https://' + event.requestContext.domainName + '/' + event.requestContext.stage
+        }); 
+
+        try {
+          connectionInfo = await callbackAPI.send(new GetConnectionCommand(
+            {ConnectionId: event.requestContext.connectionId }
+          ));
+        } catch (e) {
+          console.log(e);
+        }
+      
+        connectionInfo.connectionID = connectionId;
+      
+        await callbackAPI.send(new PostToConnectionCommand(
+          {ConnectionId: event.requestContext.connectionId,
+            Data:
+              'Use the sendmessage route to send a message. Your info:' +
+              JSON.stringify(connectionInfo)}
+        ));
+        return {
+          statusCode: 200,
+        };
+      };
+    EOT
+    filename = "index.js"
+  }
+}
+
