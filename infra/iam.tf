@@ -91,12 +91,12 @@
         {
             "Action": "execute-api:ManageConnections",
             "Effect": "Allow",
-            "Resource": "arn:aws:execute-api:${var.region}:${aws_account_id}/*/POST/@connections/*"
+            "Resource": "arn:aws:execute-api:${var.region}:${var.account_id}/*/POST/@connections/*"
         },
         {
             "Action": "execute-api:ManageConnections",
             "Effect": "Allow",
-            "Resource": "arn:aws:execute-api:${var.region}:${aws_account_id}/*/GET/@connections/*"
+            "Resource": "arn:aws:execute-api:${var.region}:${var.account_id}/*/GET/@connections/*"
       }
     ]
   })
