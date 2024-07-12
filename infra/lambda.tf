@@ -122,7 +122,7 @@ data "archive_file" "DisconnectHandler_zip" {
 
 resource "aws_lambda_function" "DefaultHandler" {
   function_name = "DefaultHandler604DF7AC"
-  role          = aws_iam_role.DefaultHandlerServiceRole.arn
+  role          = aws_iam_role.DefaultHandlerServiceRoleDF00569C.arn
   handler       = "index.handler"
   runtime       = "nodejs16.x"
 
@@ -130,7 +130,7 @@ resource "aws_lambda_function" "DefaultHandler" {
   source_code_hash = data.archive_file.DefaultHandler_zip.output_base64sha256
 
   depends_on = [
-    aws_iam_policy_attachment.DefaultHandlerServiceRoleDefaultPolicy2F57C32F,
+    aws_iam_policy.DefaultHandlerServiceRoleDefaultPolicy2F57C32F,
     aws_iam_role.DefaultHandlerServiceRoleDF00569C
   ]
 }
