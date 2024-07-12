@@ -78,10 +78,10 @@
   })
   }
   
-#   resource "aws_iam_role_policy_attachment" "disconnect_handler_service_role_attachment" {
-#     role       = aws_iam_role.disconnect_handler_service_role.name
-#     policy_arn = aws_iam_policy.disconnect_handler_service_role_default_policy.arn
-#   }
+  resource "aws_iam_role_policy_attachment" "disconnect_handler_service_role_attachment" {
+    role       = aws_iam_role.DisconnectHandlerServiceRoleE54F14F9.name
+    policy_arn = aws_iam_policy.DisconnectHandlerServiceRoleDefaultPolicy1800B9E5.arn
+  }
 
 
 #     resource "aws_iam_role" "send_message_handler_service_role" {
