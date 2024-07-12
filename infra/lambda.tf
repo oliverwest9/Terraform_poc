@@ -64,7 +64,7 @@ data "archive_file" "ConnectHandler_zip" {
 
 resource "aws_lambda_function" "DisconnectHandler" {
   function_name = "DisconnectHandlerCB7ED6F7"
-  role          = aws_iam_role.DisconnectHandlerServiceRole.arn
+  role          = aws_iam_role.DisconnectHandlerServiceRoleE54F14F9.arn
   handler       = "index.handler"
   runtime       = "nodejs20.x"
 
@@ -78,8 +78,8 @@ resource "aws_lambda_function" "DisconnectHandler" {
   }
 
   depends_on = [
-    aws_iam_role_policy.DisconnectHandlerServiceRoleDefaultPolicy,
-    aws_iam_role.DisconnectHandlerServiceRole
+    aws_iam_role_policy.DisconnectHandlerServiceRoleDefaultPolicy1800B9E5,
+    aws_iam_role.DisconnectHandlerServiceRoleE54F14F9
   ]
 }
 

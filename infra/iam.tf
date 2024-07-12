@@ -39,9 +39,9 @@
         })
   }
 
-  resource "aws_iam_role" "disconnect_handler_service_role" {
+  resource "aws_iam_role" "DisconnectHandlerServiceRoleE54F14F9" {
     name               = "DisconnectHandlerServiceRoleE54F14F9"
-    assume_role_policy = ({
+    assume_role_policy = jsonencode({
         "Version": "2012-10-17",
         "Statement": [
         {
@@ -55,24 +55,24 @@
   })
   }
 
-  resource "aws_iam_policy" "disconnect_handler_service_role_default_policy" {
+  resource "aws_iam_policy" "DisconnectHandlerServiceRoleDefaultPolicy1800B9E5" {
     name        = "DisconnectHandlerServiceRoleDefaultPolicy1800B9E5"
-    policy      =  ({
+    policy      =  jsonencode({
     "Version": "2012-10-17",
     "Statement": [
       {
-        "Action": [
-          "dynamodb:BatchWriteItem",
-          "dynamodb:PutItem",
-          "dynamodb:UpdateItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:DescribeTable"
-        ],
-        "Effect": "Allow",
-        "Resource": [
-          aws_dynamodb_table.connections_table.arn,
-          aws_dynamodb_table.connections_table.arn
-        ]
+            "Action": [
+            "dynamodb:BatchWriteItem",
+            "dynamodb:PutItem",
+            "dynamodb:UpdateItem",
+            "dynamodb:DeleteItem",
+            "dynamodb:DescribeTable"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+            aws_dynamodb_table.ConnectionsTable8000B8A1.arn,
+            aws_dynamodb_table.ConnectionsTable8000B8A1.arn/*Ref: AWS::NoValue*/
+            ]
       }
     ]
   })
